@@ -12,10 +12,10 @@ mvn compile
 
 mvn package
 
-java -jar target/tire.jar --server.port=8081
+java -jar target/hotel.jar --server.port=8081
 
 mvn clean package
 
-java -jar target\tire.jar --server.port=8081
+java -jar target/hotel.jar --server.port=8081
 
 http://localhost:8086/
