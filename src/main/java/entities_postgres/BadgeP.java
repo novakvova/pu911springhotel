@@ -1,4 +1,4 @@
-package hotel.entities;
+package entities_postgres;
 
 import lombok.Data;
 
@@ -7,17 +7,17 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name="Badges")
-public class Badge {
+@Table(name="badges")
+public class BadgeP {
     @Id
-    @Column(name="Id")
+    @Column(name="id")
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name="Name", length = 40, nullable = false)
+    @Column(name="name", length = 40, nullable = false)
     private String name;
-    @Column(name = "UserId")
+    @Column(name = "user_d")
     private int userId;
-    @Column(name="Date", nullable = false, columnDefinition = "datetime")
+    @Column(name="date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 }
