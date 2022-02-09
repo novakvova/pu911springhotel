@@ -1,18 +1,12 @@
 import * as React from 'react';
-import { Routes, Route } from 'react-router-dom';
-//import logo from './logo.svg';
-//import './App.css';
-import Home from "./components/Home";
-import DefaultLayout from "./components/containers/DefaultLayout";
+import { useRoutes  } from "react-router-dom";
+import routes from './routes';
+import './App.css';
+
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<DefaultLayout/>}>
-          <Route index element={<Home/>} />
-        </Route>
-    </Routes>
-  );
+  let element = useRoutes(routes);
+  return <>{element}</>;
 }
 
 export default App;
