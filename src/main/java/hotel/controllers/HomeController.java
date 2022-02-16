@@ -7,12 +7,16 @@ import hotel.mapper.RegionMapper;
 import hotel.repositories.RegionRepository;
 import hotel.storage.StorageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -40,5 +44,19 @@ public class HomeController {
         Region region = regionMapper.AddRegionToRegion(dto);
         regionRepository.save(region);
         return region;
+    }
+
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws Exception {
+
+        Resource file = storageService.loadAsResource(filename);
+        String urlFileName =  URLEncoder.encode("сало.jpg", StandardCharsets.UTF_8.toString());
+        return ResponseEntity.ok()
+                //.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+                .contentType(MediaType.IMAGE_JPEG)
+
+                .header(HttpHeaders.CONTENT_DISPOSITION,"filename=\""+urlFileName+"\"")
+                .body(file);
     }
 }

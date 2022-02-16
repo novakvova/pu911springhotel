@@ -1,6 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import Home from "./components/Home";
 import DefaultLayout from "./components/containers/DefaultLayout";
+import UploadingPage from "./components/Uploading";
 
 
 const routes: RouteObject[] = [
@@ -9,6 +10,7 @@ const routes: RouteObject[] = [
       element: <DefaultLayout/>,
       children: [
         { index: true, element: <Home/> },
+        { path: "/uploading", element: <UploadingPage/>},
         // {
         //   path: "/courses",
         //   element: <Courses />,
