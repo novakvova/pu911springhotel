@@ -2,6 +2,7 @@ import "cropperjs/dist/cropper.min.css";
 import * as React from "react";
 import { Modal, Button, Col, Row } from "antd";
 import Cropper from "cropperjs";
+import { margin } from "@mui/system";
 
 
 const HomePage: React.FC = () => {
@@ -50,16 +51,15 @@ const HomePage: React.FC = () => {
       </Button> */}
 
       <label htmlFor="uploading">
-        <img src={imageView} alt="" width="250" 
-          style={{cursor: "pointer"}}/>
+        <img src={imageView} alt="" width="250" style={{ cursor: "pointer" }} />
       </label>
 
       <input
-          id="uploading"
-          style={{display: "none"}}
-          type="file"
-          onChange={handleChangeFile}
-        />
+        id="uploading"
+        style={{ display: "none" }}
+        type="file"
+        onChange={handleChangeFile}
+      />
 
       <Modal
         title="Modal 1000px width"
@@ -69,18 +69,20 @@ const HomePage: React.FC = () => {
         onCancel={() => setVisible(false)}
         width={1000}
       >
-        <Row gutter={[16, 16]}>
+        <Row gutter={[8, 8]}>
           <Col md={18} xs={24}>
-            <img
-              src="https://vovalohika.tk/images/1200_gntox1zw.ipw.jpeg"
-              width="100%"
-              style={{maxHeight:"600px"}}
-              ref={imgRef}
-            />
+            <div>
+              <img
+                src="https://vovalohika.tk/images/1200_gntox1zw.ipw.jpeg"
+                width="100%"
+                style={{ maxHeight: "600px" }}
+                ref={imgRef}
+              />
+            </div>
           </Col>
           <Col md={6} xs={24}>
             <div
-             ref={prevRef}
+              ref={prevRef}
               style={{
                 height: "150px",
                 border: "1px solid silver",
