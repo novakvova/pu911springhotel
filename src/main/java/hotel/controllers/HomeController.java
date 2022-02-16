@@ -1,6 +1,7 @@
 package hotel.controllers;
 
 import hotel.dto.regions.AddRegionDto;
+import hotel.dto.regions.UploadImageDto;
 import hotel.entities.Hotel;
 import hotel.entities.Region;
 import hotel.mapper.RegionMapper;
@@ -44,6 +45,12 @@ public class HomeController {
         Region region = regionMapper.AddRegionToRegion(dto);
         regionRepository.save(region);
         return region;
+    }
+
+    @PostMapping("/upload")
+    public String upload(@RequestBody UploadImageDto dto) {
+        String image = storageService.save(dto.getBase64());
+        return image;
     }
 
     @GetMapping("/files/{filename:.+}")

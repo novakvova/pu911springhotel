@@ -12,9 +12,6 @@ const CropperModal: React.FC<ICropperProps> = ({
   const imgRef = React.useRef<HTMLImageElement>(null);
   const prevRef = React.useRef<HTMLImageElement>(null);
   const [cropperObj, setCropperObj] = React.useState<Cropper>();
-  const [imageView, setImageView] = React.useState<string>(
-    "http://localhost:8081/files/plus.png"
-  );
 
   //вибір файла
   const handleChangeFile = async (e: any) => {
@@ -39,15 +36,13 @@ const CropperModal: React.FC<ICropperProps> = ({
   };
   const handleOk = async () => {
     const base64 = cropperObj?.getCroppedCanvas().toDataURL() as string;
-    //console.log("Cropper data: ", base64);
-    await setImageView(base64);
     await setVisible(false);
     onSelected(base64);
   };
   return (
-    <div>
+    <>
       <label htmlFor="uploading">
-        <img src={imageView} alt="" width="250" style={{ cursor: "pointer" }} />
+        <img src="http://localhost:8081/files/plus.png" alt="" width="100%" style={{ cursor: "pointer" }} />
       </label>
 
       <input
@@ -88,7 +83,7 @@ const CropperModal: React.FC<ICropperProps> = ({
           </Col>
         </Row>
       </Modal>
-    </div>
+    </>
   );
 };
 
