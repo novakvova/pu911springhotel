@@ -24,6 +24,8 @@ const UploadingPage: React.FC = () => {
       </Col>
     );
   });
+  // <span id=""></span>
+  // $("#header").html(""); //innerHtml
   return (
     <>
       <h1>Загрузка фоток</h1>
