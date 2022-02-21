@@ -3,8 +3,10 @@ package hotel.controllers;
 import hotel.dto.regions.AddRegionDto;
 import hotel.dto.regions.UploadImageDto;
 import hotel.entities.Hotel;
+import hotel.entities.HotelImage;
 import hotel.entities.Region;
 import hotel.mapper.RegionMapper;
+import hotel.repositories.HotelImageRepository;
 import hotel.repositories.RegionRepository;
 import hotel.storage.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ public class HomeController {
     private final RegionRepository regionRepository;
     private final RegionMapper regionMapper;
     private final StorageService storageService;
+    private final HotelImageRepository hotelImageRepository;
 
 //    @Autowired
 //    public HomeController(RegionRepository regionRepository) {
@@ -49,8 +52,10 @@ public class HomeController {
 
     @PostMapping("/upload")
     public String upload(@RequestBody UploadImageDto dto) {
-        String image = storageService.save(dto.getBase64());
-        return image;
+        String fileName = storageService.save(dto.getBase64());
+        HotelImage image = new HotelImage(fileName);
+        hotelImageRepository.save(image);
+        return fileName;
     }
 
     @GetMapping("/files/{filename:.+}")

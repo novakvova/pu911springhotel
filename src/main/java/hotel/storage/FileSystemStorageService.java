@@ -62,7 +62,9 @@ public class FileSystemStorageService implements StorageService {
             byte [] bytes = new byte[0];
             bytes = decoder.decode(charArray[1]);
             String folder = rootLocation.toString()+"/"+randomFileName;
+
             new FileOutputStream(folder).write(bytes);
+
             return randomFileName;
 
         } catch (IOException e) {

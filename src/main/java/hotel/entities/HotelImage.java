@@ -1,12 +1,13 @@
 package hotel.entities;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="tbl_hotel")
-public class Hotel {
+@Table(name="tbl_hotel_images")
+public class HotelImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,7 +15,10 @@ public class Hotel {
     @Column(name="name", length = 250)
     private String name;
 
-    @Column(name="description",length = 4000)
-    private String description;
+    @ManyToOne
+    private Hotel hotel;
 
+    public HotelImage(String name) {
+        this.name = name;
+    }
 }
