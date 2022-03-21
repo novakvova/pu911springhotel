@@ -1,5 +1,6 @@
 package hotel.configuration.security;
 
+import hotel.constants.Roles;
 import hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -82,10 +83,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Set permissions on endpoints
         http.authorizeRequests()
                 // Swagger endpoints must be publicly accessible
-                .antMatchers("/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/create").hasAuthority(Roles.Admin)
+                .antMatchers(String.format("%s", restApiDocPath)).permitAll()
+                .antMatchers(String.format("%s", swaggerPath)).permitAll()
                 .antMatchers("/static/**").permitAll() //.hasAuthority(Roles.Admin)
                 .antMatchers("/api/categories").permitAll()
                 .antMatchers("/api/tutorials/**").permitAll()
+
                 .antMatchers(String.format("%s/**", restApiDocPath)).permitAll()
                 .antMatchers(String.format("%s/**", swaggerPath)).permitAll()
                 // Our public endpoints

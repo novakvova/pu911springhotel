@@ -44,7 +44,7 @@ public class HomeController {
     }
 
     @PostMapping("/create")
-    public Region create(AddRegionDto dto) {
+    public Region create(@RequestBody AddRegionDto dto) {
         Region region = regionMapper.AddRegionToRegion(dto);
         regionRepository.save(region);
         return region;
